@@ -1,0 +1,41 @@
+# === Unity ===
+# Pastas geradas pela Unity (nunca versionar)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Os arquivos .meta DEVEM ser versionados (a Unity liga asset <-> import por eles).
+# Só ignore um .meta se o asset correspondente também estiver ignorado.
+!/[Aa]ssets/**/*.meta
+
+# === IDEs / arquivos de projeto autogerados ===
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# === Diversos ===
+sysinfo.txt
+*.apk
+*.aab
+*.unitypackage
+*.app
+.gradle/
