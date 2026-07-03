@@ -35,6 +35,7 @@ public class FighterMovement : MonoBehaviour
 
     Rigidbody rb;
     Collider col;
+    FighterStateMachine sm; // opcional: se existir, decide quando o lutador pode se mover
 
     float moveInput;   // -1 (esquerda), 0 (parado) ou +1 (direita) no eixo X
     bool jumpQueued;   // pulo pedido neste frame de input; consumido no próximo FixedUpdate
@@ -44,6 +45,7 @@ public class FighterMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        sm = GetComponent<FighterStateMachine>(); // pode ser null se ainda não foi adicionada
 
         // 2.5D: trava a profundidade (Z) para o corpo nunca sair do plano de luta,
         // e trava as rotações da física pra cápsula não tombar ao esbarrar em algo.
@@ -74,13 +76,16 @@ public class FighterMovement : MonoBehaviour
         // FÍSICA/LÓGICA no passo fixo (determinismo).
         isGrounded = CheckGrounded();
 
+        // A FSM manda: durante um ataque (ou hitstun) o lutador fica "ocupado" e não anda/pula.
+        bool busy = sm != null && sm.IsBusy;
+
         // Controlamos a velocidade horizontal diretamente e preservamos a vertical
         // (pra gravidade/queda continuarem funcionando naturalmente).
         Vector3 v = rb.linearVelocity; // Unity 6: 'linearVelocity' (o antigo 'velocity' está deprecado)
-        v.x = moveInput * moveSpeed;
+        v.x = busy ? 0f : moveInput * moveSpeed;
 
-        // Só pula se pediu pulo E está no chão (nada de pulo infinito no ar).
-        if (jumpQueued && isGrounded)
+        // Só pula se NÃO estiver ocupado, pediu pulo E está no chão.
+        if (!busy && jumpQueued && isGrounded)
             v.y = jumpSpeed;
         jumpQueued = false; // consome o pedido de pulo
 
