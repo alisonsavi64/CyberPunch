@@ -5,6 +5,7 @@ using UnityEngine;
 public class FighterHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] int maxHealth = 100;
+    [SerializeField, Range(0f, 1f)] float blockedDamageMultiplier = 0.2f;
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth { get; private set; }
@@ -25,7 +26,11 @@ public class FighterHealth : MonoBehaviour, IDamageable
     {
         if (IsKnockedOut) return;
 
-        CurrentHealth = Mathf.Max(0, CurrentHealth - hit.Damage);
+        bool blocked = stateMachine.IsBlocking;
+        int damage = blocked ? Mathf.Max(1, Mathf.RoundToInt(hit.Damage * blockedDamageMultiplier)) : hit.Damage;
+        int minHealth = blocked ? 1 : 0;
+
+        CurrentHealth = Mathf.Max(minHealth, CurrentHealth - damage);
         HealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (IsKnockedOut)
@@ -33,7 +38,7 @@ public class FighterHealth : MonoBehaviour, IDamageable
             stateMachine.EnterKnockDown();
             KnockedOut?.Invoke();
         }
-        else
+        else if (!blocked)
         {
             stateMachine.EnterHitStun(hit.HitstunFrames);
         }

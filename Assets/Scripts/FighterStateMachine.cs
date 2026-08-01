@@ -17,7 +17,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Hurtbox))]
 public class FighterStateMachine : MonoBehaviour
 {
-    public enum State { Idle, LightAttack, HeavyAttack, HitStun, KnockDown }
+    public enum State { Idle, LightAttack, HeavyAttack, HitStun, KnockDown, Block }
 
     /// Onde um ataque está dentro do seu frame data.
     public enum AttackPhase { None, Startup, Active, Recovery }
@@ -50,16 +50,18 @@ public class FighterStateMachine : MonoBehaviour
         var kb = Keyboard.current;
         if (kb == null) return;
 
-        bool lightPressed, heavyPressed;
+        bool lightPressed, heavyPressed, blockHeld;
         if (movement.player == FighterMovement.PlayerId.One)
         {
             lightPressed = kb.jKey.wasPressedThisFrame;
             heavyPressed = kb.kKey.wasPressedThisFrame;
+            blockHeld = kb.leftShiftKey.isPressed;
         }
         else
         {
             lightPressed = kb.commaKey.wasPressedThisFrame;
             heavyPressed = kb.periodKey.wasPressedThisFrame;
+            blockHeld = kb.rightShiftKey.isPressed;
         }
 
         // Só dá pra INICIAR um ataque a partir de Idle (não durante outro ataque).
@@ -67,6 +69,11 @@ public class FighterStateMachine : MonoBehaviour
         {
             if (lightPressed && lightAttack != null) StartAttack(State.LightAttack, lightAttack);
             else if (heavyPressed && heavyAttack != null) StartAttack(State.HeavyAttack, heavyAttack);
+            else if (blockHeld) EnterBlock();
+        }
+        else if (current == State.Block)
+        {
+            if (!blockHeld || movement.HasMovementInput) ReturnToIdle();
         }
     }
 
@@ -143,8 +150,19 @@ public class FighterStateMachine : MonoBehaviour
         hitbox.Deactivate();
     }
 
+    void EnterBlock()
+    {
+        current = State.Block;
+        phase = AttackPhase.None;
+        frameInState = 0;
+        hitbox.Deactivate();
+    }
+
     /// <summary>Está "ocupado" (não pode andar/pular)? O FighterMovement usa isto.</summary>
     public bool IsBusy => current != State.Idle;
+
+    /// <summary>Está bloqueando agora? O FighterHealth usa isto pra reduzir o dano.</summary>
+    public bool IsBlocking => current == State.Block;
 
     /// <summary>A hitbox do golpe está ativa AGORA? A Fase 3 vai usar isto pra causar dano.</summary>
     public bool IsAttackActive => phase == AttackPhase.Active;

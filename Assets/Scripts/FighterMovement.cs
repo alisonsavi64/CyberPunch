@@ -115,6 +115,9 @@ public class FighterMovement : MonoBehaviour
     /// <summary>Direção que o lutador encara. Golpes direcionais (fases futuras) vão usar isto.</summary>
     public bool FacingRight => opponent == null || opponent.position.x >= transform.position.x;
 
+    /// <summary>O jogador pediu movimento (andar ou pular) neste frame? Usado pra interromper o bloqueio.</summary>
+    public bool HasMovementInput => Mathf.Abs(moveInput) > 0.01f || jumpQueued;
+
     // Desenha o raio de chão no editor quando o objeto está selecionado — ajuda a visualizar/depurar.
     void OnDrawGizmosSelected()
     {
