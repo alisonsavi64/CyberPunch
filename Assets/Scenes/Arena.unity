@@ -398,6 +398,8 @@ GameObject:
   - component: {fileID: 566257839}
   - component: {fileID: 566257838}
   - component: {fileID: 566257843}
+  - component: {fileID: 566257844}
+  - component: {fileID: 566257845}
   m_Layer: 0
   m_Name: Fighter_P1
   m_TagString: Untagged
@@ -563,6 +565,34 @@ MonoBehaviour:
   current: 0
   phase: 0
   frameInState: 0
+--- !u!114 &566257844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566257836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17b9b061aad3597888d306477555e55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
+  center: {x: 0.6, y: 1, z: 0}
+  size: {x: 0.5, y: 0.8, z: 0.6}
+--- !u!114 &566257845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566257836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d2b11991d6823b0c37d8569efc7052, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  center: {x: 0, y: 1, z: 0}
+  size: {x: 0.6, y: 1.8, z: 0.6}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +770,8 @@ GameObject:
   - component: {fileID: 1534739306}
   - component: {fileID: 1534739305}
   - component: {fileID: 1534739311}
+  - component: {fileID: 1534739312}
+  - component: {fileID: 1534739313}
   m_Layer: 0
   m_Name: Fighter_P2
   m_TagString: Untagged
@@ -905,6 +937,34 @@ MonoBehaviour:
   current: 0
   phase: 0
   frameInState: 0
+--- !u!114 &1534739312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534739304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17b9b061aad3597888d306477555e55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
+  center: {x: 0.6, y: 1, z: 0}
+  size: {x: 0.5, y: 0.8, z: 0.6}
+--- !u!114 &1534739313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534739304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d2b11991d6823b0c37d8569efc7052, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  center: {x: 0, y: 1, z: 0}
+  size: {x: 0.6, y: 1.8, z: 0.6}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

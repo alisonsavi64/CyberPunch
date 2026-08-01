@@ -13,6 +13,8 @@ using UnityEngine.InputSystem;
 /// nas próximas fases.
 /// </summary>
 [RequireComponent(typeof(FighterMovement))]
+[RequireComponent(typeof(Hitbox))]
+[RequireComponent(typeof(Hurtbox))]
 public class FighterStateMachine : MonoBehaviour
 {
     public enum State { Idle, LightAttack, HeavyAttack, HitStun, KnockDown }
@@ -31,11 +33,13 @@ public class FighterStateMachine : MonoBehaviour
     public int frameInState;
 
     FighterMovement movement;
+    Hitbox hitbox;
     AttackData activeAttackData;
 
     void Awake()
     {
         movement = GetComponent<FighterMovement>();
+        hitbox = GetComponent<Hitbox>();
     }
 
     void Update()
@@ -80,19 +84,26 @@ public class FighterStateMachine : MonoBehaviour
         activeAttackData = data;
         phase = AttackPhase.Startup;
         frameInState = 0;
+        hitbox.Deactivate();
     }
 
-    /// <summary>Faz o ataque andar pelas fases do frame data conforme os frames passam.</summary>
     void TickAttack()
     {
         int s = activeAttackData.startupFrames;
         int a = activeAttackData.activeFrames;
         int r = activeAttackData.recoveryFrames;
 
+        AttackPhase previousPhase = phase;
+
         if (frameInState <= s)                phase = AttackPhase.Startup;
-        else if (frameInState <= s + a)       phase = AttackPhase.Active;   // hitbox liga aqui (Fase 3)
+        else if (frameInState <= s + a)       phase = AttackPhase.Active;
         else if (frameInState <= s + a + r)   phase = AttackPhase.Recovery;
-        else                                  ReturnToIdle();
+        else                                  { ReturnToIdle(); return; }
+
+        if (phase == AttackPhase.Active && previousPhase != AttackPhase.Active)
+            hitbox.Activate(activeAttackData);
+        else if (previousPhase == AttackPhase.Active && phase != AttackPhase.Active)
+            hitbox.Deactivate();
     }
 
     void ReturnToIdle()
@@ -101,6 +112,7 @@ public class FighterStateMachine : MonoBehaviour
         phase = AttackPhase.None;
         frameInState = 0;
         activeAttackData = null;
+        hitbox.Deactivate();
     }
 
     /// <summary>Está "ocupado" (não pode andar/pular)? O FighterMovement usa isto.</summary>
