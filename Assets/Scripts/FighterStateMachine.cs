@@ -158,6 +158,9 @@ public class FighterStateMachine : MonoBehaviour
         hitbox.Deactivate();
     }
 
+    /// <summary>Força o lutador de volta pro Idle. Usado pelo MatchManager ao (re)iniciar um round.</summary>
+    public void ResetState() => ReturnToIdle();
+
     /// <summary>Está "ocupado" (não pode andar/pular)? O FighterMovement usa isto.</summary>
     public bool IsBusy => current != State.Idle;
 

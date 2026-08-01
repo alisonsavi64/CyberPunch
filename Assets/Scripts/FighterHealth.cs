@@ -22,6 +22,12 @@ public class FighterHealth : MonoBehaviour, IDamageable
         CurrentHealth = maxHealth;
     }
 
+    public void ResetHealth()
+    {
+        CurrentHealth = maxHealth;
+        HealthChanged?.Invoke(CurrentHealth, maxHealth);
+    }
+
     public void ApplyHit(HitInfo hit)
     {
         if (IsKnockedOut) return;

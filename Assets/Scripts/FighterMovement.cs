@@ -118,6 +118,15 @@ public class FighterMovement : MonoBehaviour
     /// <summary>O jogador pediu movimento (andar ou pular) neste frame? Usado pra interromper o bloqueio.</summary>
     public bool HasMovementInput => Mathf.Abs(moveInput) > 0.01f || jumpQueued;
 
+    /// <summary>Reposiciona o lutador e zera sua velocidade. Usado pelo MatchManager ao (re)iniciar um round.</summary>
+    public void ResetTo(Vector3 position)
+    {
+        rb.linearVelocity = Vector3.zero;
+        transform.position = position;
+        moveInput = 0f;
+        jumpQueued = false;
+    }
+
     // Desenha o raio de chão no editor quando o objeto está selecionado — ajuda a visualizar/depurar.
     void OnDrawGizmosSelected()
     {
