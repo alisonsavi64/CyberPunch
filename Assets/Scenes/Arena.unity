@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 566257844}
   - component: {fileID: 566257845}
   - component: {fileID: 566257846}
+  - component: {fileID: 566257847}
   m_Layer: 0
   m_Name: Fighter_P1
   m_TagString: Untagged
@@ -607,6 +608,23 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::FighterHealth
   maxHealth: 100
+--- !u!114 &566257847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566257836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c654d2e110614d2694b27529464615, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  idleColor: {r: 1, g: 0.086, b: 0.396, a: 1}
+  attackColor: {r: 1, g: 0.6, b: 0.1, a: 1}
+  blockColor: {r: 0.2, g: 0.6, b: 1, a: 1}
+  hitstunColor: {r: 1, g: 0.15, b: 0.15, a: 1}
+  knockedOutColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +805,7 @@ GameObject:
   - component: {fileID: 1534739312}
   - component: {fileID: 1534739313}
   - component: {fileID: 1534739314}
+  - component: {fileID: 1534739315}
   m_Layer: 0
   m_Name: Fighter_P2
   m_TagString: Untagged
@@ -993,6 +1012,23 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::FighterHealth
   maxHealth: 100
+--- !u!114 &1534739315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534739304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c654d2e110614d2694b27529464615, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  idleColor: {r: 0.086, g: 0.9, b: 1, a: 1}
+  attackColor: {r: 1, g: 0.6, b: 0.1, a: 1}
+  blockColor: {r: 0.2, g: 0.6, b: 1, a: 1}
+  hitstunColor: {r: 1, g: 0.15, b: 0.15, a: 1}
+  knockedOutColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
 --- !u!1 &700000100
 GameObject:
   m_ObjectHideFlags: 0
