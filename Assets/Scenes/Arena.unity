@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 566257843}
   - component: {fileID: 566257844}
   - component: {fileID: 566257845}
+  - component: {fileID: 566257846}
   m_Layer: 0
   m_Name: Fighter_P1
   m_TagString: Untagged
@@ -593,6 +594,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
   center: {x: 0, y: 1, z: 0}
   size: {x: 0.6, y: 1.8, z: 0.6}
+--- !u!114 &566257846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566257836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee5a33053cd901bdf6eaa2692be3d91, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::FighterHealth
+  maxHealth: 100
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +786,7 @@ GameObject:
   - component: {fileID: 1534739311}
   - component: {fileID: 1534739312}
   - component: {fileID: 1534739313}
+  - component: {fileID: 1534739314}
   m_Layer: 0
   m_Name: Fighter_P2
   m_TagString: Untagged
@@ -965,6 +980,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
   center: {x: 0, y: 1, z: 0}
   size: {x: 0.6, y: 1.8, z: 0.6}
+--- !u!114 &1534739314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534739304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee5a33053cd901bdf6eaa2692be3d91, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::FighterHealth
+  maxHealth: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

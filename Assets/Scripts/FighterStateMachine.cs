@@ -35,6 +35,7 @@ public class FighterStateMachine : MonoBehaviour
     FighterMovement movement;
     Hitbox hitbox;
     AttackData activeAttackData;
+    int hitstunFramesTarget;
 
     void Awake()
     {
@@ -76,6 +77,8 @@ public class FighterStateMachine : MonoBehaviour
 
         if (current == State.LightAttack || current == State.HeavyAttack)
             TickAttack();
+        else if (current == State.HitStun)
+            TickHitStun();
     }
 
     void StartAttack(State attackState, AttackData data)
@@ -109,6 +112,31 @@ public class FighterStateMachine : MonoBehaviour
     void ReturnToIdle()
     {
         current = State.Idle;
+        phase = AttackPhase.None;
+        frameInState = 0;
+        activeAttackData = null;
+        hitbox.Deactivate();
+    }
+
+    public void EnterHitStun(int hitstunFrames)
+    {
+        current = State.HitStun;
+        phase = AttackPhase.None;
+        frameInState = 0;
+        hitstunFramesTarget = hitstunFrames;
+        activeAttackData = null;
+        hitbox.Deactivate();
+    }
+
+    void TickHitStun()
+    {
+        if (frameInState >= hitstunFramesTarget)
+            ReturnToIdle();
+    }
+
+    public void EnterKnockDown()
+    {
+        current = State.KnockDown;
         phase = AttackPhase.None;
         frameInState = 0;
         activeAttackData = null;

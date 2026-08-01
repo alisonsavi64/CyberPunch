@@ -18,3 +18,4 @@ MonoBehaviour:
   recoveryFrames: 25
   damage: 18
   knockback: 6
+  hitstunFrames: 20

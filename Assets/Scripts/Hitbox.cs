@@ -45,7 +45,7 @@ public class Hitbox : MonoBehaviour
         if (!hitTargetsThisSwing.Add(hurtbox.Owner)) return;
 
         bool fromRight = owner.transform.position.x > hurtbox.Owner.transform.position.x;
-        var hit = new HitInfo(owner.gameObject, activeAttack.damage, activeAttack.knockback, fromRight);
+        var hit = new HitInfo(owner.gameObject, activeAttack.damage, activeAttack.knockback, activeAttack.hitstunFrames, fromRight);
         hurtbox.Owner.GetComponent<IDamageable>()?.ApplyHit(hit);
     }
 }

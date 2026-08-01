@@ -26,6 +26,7 @@ public class AttackData : ScriptableObject
     [Header("Efeito ao acertar (usado na Fase 3)")]
     public int damage = 8;
     public float knockback = 3f;
+    [Min(1)] public int hitstunFrames = 12;
 
     /// <summary>Duração total do golpe, do botão até voltar a poder agir.</summary>
     public int TotalFrames => startupFrames + activeFrames + recoveryFrames;
