@@ -43,10 +43,16 @@ public class FighterHealth : MonoBehaviour, IDamageable
         {
             stateMachine.EnterKnockDown();
             KnockedOut?.Invoke();
+            AudioManager.Instance?.PlayKnockOut();
         }
-        else if (!blocked)
+        else if (blocked)
+        {
+            AudioManager.Instance?.PlayBlock();
+        }
+        else
         {
             stateMachine.EnterHitStun(hit.HitstunFrames);
+            AudioManager.Instance?.PlayHit();
         }
     }
 }

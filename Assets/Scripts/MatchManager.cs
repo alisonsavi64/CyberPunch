@@ -83,6 +83,7 @@ public class MatchManager : MonoBehaviour
 
         phase = MatchPhase.RoundEnded;
         intermissionTimeRemaining = roundIntermissionSeconds;
+        AudioManager.Instance?.PlayRoundEnd();
     }
 
     void TickIntermission()
@@ -102,6 +103,7 @@ public class MatchManager : MonoBehaviour
 
         roundTimeRemaining = roundTimeLimit;
         phase = MatchPhase.RoundInProgress;
+        AudioManager.Instance?.PlayRoundStart();
     }
 
     public int PlayerRoundWins(int player) => player == 1 ? player1RoundWins : player2RoundWins;
